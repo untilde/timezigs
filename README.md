@@ -43,6 +43,9 @@ Available keybinds (set in Renoise preferences):
   - Click the disk icon to save the current Custom `n/d` into that slot.
 
 
+https://github.com/user-attachments/assets/a6f39099-db27-4428-b825-eca30329ac29
+
+
 ## Understanding Time Signatures and LPB
 
 To use TimeZigs effectively, it helps to separate two ideas:
