@@ -8,6 +8,11 @@ Based on Esa Ruoho’s Paketti [Slab O Patterns](https://github.com/esaruoho/pak
 
 <img width="499" height="555" alt="image" src="https://github.com/user-attachments/assets/2f361277-45be-4f8f-bbfc-699589ee520a" />
 
+## Download
+
+Grab the latest alpha version at https://github.com/untilde/timezigs/releases/tag/Alpha
+
+Since it's still a very experimental tool, feel free to open Issues or send Pull Requests.
 
 ## Features
 
