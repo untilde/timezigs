@@ -16,10 +16,10 @@ Since it's still a very experimental tool, feel free to open Issues or send Pull
 
 ## Features
 
-- Create one-bar pattern sequences or instrument phrases for any time signature.
+- Creates patterns or instrument phrases for any time signature without changing your Lines-Per-Beat (LPB) setting.
 - Automatically writes `ZLxx` (LPB) on the first line of generated patterns and phrases.
-- Custom preset slots (4) with save icons; click to load, click the icon to save current custom values.
-- Shows current Time Signature, `Lines`, `LPB`, and `Beat Duration` (lines per beat).
+- 4 preset slots for custom time signatures.
+- Shows current Time Signature, `Lines`, `LPB`, and `Beat Duration` (lines per beat). Updates on LPB change.
 - Optional `Fill notes` (experimental) mode places note markers per beat using the `Delay` column for fractional timing.
 - Optional section naming: append current time signature and `LPB` to the section name.
 - Safe/Integer Line mode (Allow only integer beat durations): highlights non-integer presets and blocks creation unless the bar length is a whole number of lines. Disable to allow approximation (more accurate at higher `LPB`).
