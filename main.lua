@@ -120,9 +120,6 @@ function TimeZigsApplyPreset(preset_index)
   if TimeZigsPresetCanvas then TimeZigsPresetCanvas:update() end
 end
 
-
--- (removed) Stored value helper no longer needed in simplified UI
-
 -- Helpers: load/save config -------------------------------------------------
 
 -- tiny helpers
@@ -315,15 +312,6 @@ function TimeZigsSaveCustomPresets()
     renoise.app():show_status("Could not save custom presets. Ensure settings/user/ exists and is writable.")
   end
 end
-
-
--- (removed) Legacy parsing and normalization helpers are no longer needed
-
--- (removed) Legacy per-row splitting and formatting helpers
-
--- Create patterns
-
--- (custom presets load/save defined above in Helpers section)
 
 
 function TimeZigsCalculateLinesPerBeat(denominator)
@@ -805,9 +793,6 @@ function TimeZigsBackspace()
 end
 
 -- UI
-
--- (removed) Row color/label refresh utilities
-
 -- Build Canvas-based preset grid as a stack: canvas background + 16 large buttons
 local function TimeZigsBuildPresetCanvas(vb)
   -- compute grid geometry
