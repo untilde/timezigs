@@ -54,7 +54,7 @@ To use TimeZigs effectively, it helps to separate two ideas:
 
 - LPB (Lines‑Per‑Beat):
   - The resolution of the tracker grid — how many lines represent one beat.
-  - Changing `LPB` changes grid density; it does not change the musical time signature by itself.
+  - Changing `LPB` changes grid density for the pattern editor.
 
 TimeZigs decouples these concepts: pick any `n/d`, and the tool computes how many lines each beat and bar should span at the current `LPB`, then creates patterns/phrases accordingly and writes `ZLxx` so the `LPB` travels with the content.
 
