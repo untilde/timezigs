@@ -6,6 +6,9 @@ It provides a 4×4 preset grid plus a `CUSTOM` mode, live readouts for `Lines` /
 
 Based on Esa Ruoho’s Paketti [Slab O Patterns](https://github.com/esaruoho/paketti/blob/master/PakettiSlabOPatterns.lua).
 
+<img width="499" height="555" alt="image" src="https://github.com/user-attachments/assets/2f361277-45be-4f8f-bbfc-699589ee520a" />
+
+
 ## Features
 
 - Create one-bar pattern sequences or instrument phrases for any time signature.
