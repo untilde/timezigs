@@ -1,17 +1,18 @@
 # TimeZigs
 
-TimeZigs is a Renoise companion tool that builds on Esa Ruoho’s Paketti [Slab O Patterns](https://github.com/esaruoho/paketti/blob/master/PakettiSlabOPatterns.lua), adding fast and customizable creation of patterns and phrases in any multiple time signatures.
+TimeZigs is a Renoise tool that adds fast and customizable creation of patterns and phrases in multiple time signatures.
 
 It provides a 4×4 preset grid plus a `CUSTOM` mode, live readouts for `Lines` / `LPB` / `Beat Duration`, basic presets, and quick-create keybindings for instant pattern/phrase generation.
+
+Based on Esa Ruoho’s Paketti [Slab O Patterns](https://github.com/esaruoho/paketti/blob/master/PakettiSlabOPatterns.lua).
 
 ## Features
 
 - Create one-bar pattern sequences or instrument phrases for any time signature.
-- Automatically writes `ZLxx` (LPB) on the first line so LPB travels with the content.
-- Decoupled preset and custom denominators with an optional `Global Custom Denominator` in Settings.
+- Automatically writes `ZLxx` (LPB) on the first line of generated patterns and phrases.
 - Custom preset slots (4) with save icons; click to load, click the icon to save current custom values.
-- Live banner shows current Time Signature, `Lines`, `LPB`, and `Beat Duration` (lines per beat).
-- Optional `Fill notes` mode places note markers per beat using the `Delay` column for fractional timing.
+- Shows current Time Signature, `Lines`, `LPB`, and `Beat Duration` (lines per beat).
+- Optional `Fill notes` (experimental) mode places note markers per beat using the `Delay` column for fractional timing.
 - Optional section naming: append current time signature and `LPB` to the section name.
 - Safe/Integer Line mode (Allow only integer beat durations): highlights non-integer presets and blocks creation unless the bar length is a whole number of lines. Disable to allow approximation (more accurate at higher `LPB`).
 
@@ -155,4 +156,4 @@ Constraints and validation:
 
 ## Credits
 
-Based on Paketti Slab O Patterns by Esa Ruoho.
+Based on Esa Ruoho's work in Paketti [Slab O Patterns](https://github.com/esaruoho/paketti/blob/master/PakettiSlabOPatterns.lua).
