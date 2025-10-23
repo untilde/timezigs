@@ -58,6 +58,8 @@ To use TimeZigs effectively, it helps to separate two ideas:
 
 TimeZigs decouples these concepts: pick any `n/d`, and the tool computes how many lines each beat and bar should span at the current `LPB`, then creates patterns/phrases accordingly and writes `ZLxx` so the `LPB` travels with the content.
 
+### What about odd time signatures?
+
 ### Examples
 
 Example 1: `4/4` at `8 LPB`
@@ -89,9 +91,6 @@ Lines per bar  = 8 * 5.333... = 42.666...
 Now we have a fractional bar length: `42.666...` lines. Renoise patterns can only have whole-number line counts, because each line is a discrete grid row.
 
 If the result isn’t a whole number of lines (e.g., some odd denominators at low `LPB`), Safe/Integer Line mode (default ON) will highlight and block creation. Disable it in Settings to allow approximation and generate patterns/phrases with rounded line counts (higher `LPB` improves accuracy). In Example 3, the pattern would round to `43` lines.
-
-
-### What the tool does with floats
 
 In Safe/Integer Line mode, the tool detects float beat durations and refuses to create such patterns, highlighting the “non-integer” time signatures. That’s because `42.66` lines/bar doesn’t fit cleanly on the grid — the last beat would land partway through a line.
 
