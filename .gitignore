@@ -1,4 +1,4 @@
 test.lua
 ./definitions/
 .vscode/
-net.untilde.TimeZigs.xrnx
+net.untilde.TimeZigs*.xrnx
