@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RenoiseScriptingTool doc_version="0">
+  <Id>net.untilde.timezigs.v0.1</Id>
+  <ApiVersion>6.2</ApiVersion>
+  <Version>0.1</Version>
+  <Author>untilde [hello@untilde.net]</Author>
+  <Name>TimeZigs</Name>
+  <Category>Workflow, Sequencer</Category>
+  <Description>
+    Generate patterns with custom time signatures based on current LPB.
+    Supports odd time signatures, auto section naming and more.
+    Based on Esa Ruoho's Paketti Slab O' Patterns (https://github.com/esaruoho/paketti/blob/master/PakettiSlabOPatterns.lua)
+  </Description>
+  <DocumentationPath>./README.md</DocumentationPath>
+  <Homepage>https://github.com/untilde/timezigs</Homepage>
+  <Repository>https://github.com/untilde/timezigs</Repository>
+</RenoiseScriptingTool>
