@@ -58,7 +58,7 @@ To use TimeZigs effectively, it helps to separate two ideas:
 
 TimeZigs decouples these concepts: pick any `n/d`, and the tool computes how many lines each beat and bar should span at the current `LPB`, then creates patterns/phrases accordingly and writes `ZLxx` so the `LPB` travels with the content.
 
-### What about odd time signatures?
+### What about time signatures that result in float pattern sizes?
 
 ### Examples
 
