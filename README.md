@@ -28,7 +28,7 @@ Available keybinds (set in Renoise preferences):
 - `Create Phrases – Presets 01–16`
 - `Create Phrases – Custom Preset Slots 01–04`
 
-### Custom TimeZigs
+### Custom Time Signatures
 - Use `+` / `-` to adjust `Numerator (n)` and `Denominator (d)`.
 - Right panel has four slots:
   - Click a slot to load its `n/d` into Custom.
