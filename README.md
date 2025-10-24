@@ -16,10 +16,10 @@ Since it's still a very experimental tool, feel free to open Issues or send Pull
 
 ## Features
 
-- Create one-bar pattern sequences or instrument phrases for any time signature.
+- Creates patterns or instrument phrases for any time signature without changing your Lines-Per-Beat (LPB) setting.
 - Automatically writes `ZLxx` (LPB) on the first line of generated patterns and phrases.
-- Custom preset slots (4) with save icons; click to load, click the icon to save current custom values.
-- Shows current Time Signature, `Lines`, `LPB`, and `Beat Duration` (lines per beat).
+- 4 preset slots for custom time signatures.
+- Shows current Time Signature, `Lines`, `LPB`, and `Beat Duration` (lines per beat). Updates on LPB change.
 - Optional `Fill notes` (experimental) mode places note markers per beat using the `Delay` column for fractional timing.
 - Optional section naming: append current time signature and `LPB` to the section name.
 - Safe/Integer Line mode (Allow only integer beat durations): highlights non-integer presets and blocks creation unless the bar length is a whole number of lines. Disable to allow approximation (more accurate at higher `LPB`).
@@ -43,6 +43,9 @@ Available keybinds (set in Renoise preferences):
   - Click the disk icon to save the current Custom `n/d` into that slot.
 
 
+https://github.com/user-attachments/assets/a6f39099-db27-4428-b825-eca30329ac29
+
+
 ## Understanding Time Signatures and LPB
 
 To use TimeZigs effectively, it helps to separate two ideas:
@@ -57,6 +60,8 @@ To use TimeZigs effectively, it helps to separate two ideas:
   - Changing `LPB` changes grid density for the pattern editor.
 
 TimeZigs decouples these concepts: pick any `n/d`, and the tool computes how many lines each beat and bar should span at the current `LPB`, then creates patterns/phrases accordingly and writes `ZLxx` so the `LPB` travels with the content.
+
+### What about time signatures that result in float pattern sizes?
 
 ### Examples
 
@@ -89,9 +94,6 @@ Lines per bar  = 8 * 5.333... = 42.666...
 Now we have a fractional bar length: `42.666...` lines. Renoise patterns can only have whole-number line counts, because each line is a discrete grid row.
 
 If the result isn’t a whole number of lines (e.g., some odd denominators at low `LPB`), Safe/Integer Line mode (default ON) will highlight and block creation. Disable it in Settings to allow approximation and generate patterns/phrases with rounded line counts (higher `LPB` improves accuracy). In Example 3, the pattern would round to `43` lines.
-
-
-### What the tool does with floats
 
 In Safe/Integer Line mode, the tool detects float beat durations and refuses to create such patterns, highlighting the “non-integer” time signatures. That’s because `42.66` lines/bar doesn’t fit cleanly on the grid — the last beat would land partway through a line.
 
