@@ -219,12 +219,10 @@ end
 function TimeZigsFillNotesAcrossBar(start_seq_index, created_lengths, track_index, n, d, lpb)
   if not renoise.song then return end
   local s = renoise.song()
-  if not s then return end
-  if not (start_seq_index and created_lengths and #created_lengths > 0) then return end
+  if not s or not (start_seq_index and created_lengths and #created_lengths > 0) then return end
 
-  -- Choose a safe sequencer track (no notes on master/send/group). Fallback to 1 if out of range
-  local t_index = tonumber(track_index) or 1
-  t_index = math.max(1, math.min(t_index, s.sequencer_track_count))
+  -- Choose a safe sequencer track (avoid master/send/group). Fallback to 1 if out of range
+  local t_index = math.max(1, math.min(tonumber(track_index) or 1, s.sequencer_track_count))
   local track = s.tracks[t_index]
   if track and track.visible_note_columns and track.visible_note_columns < 1 then
     track.visible_note_columns = 1
@@ -233,44 +231,73 @@ function TimeZigsFillNotesAcrossBar(start_seq_index, created_lengths, track_inde
     track.delay_column_visible = true
   end
 
-  local inst_index = math.max(1, tonumber(s.selected_instrument_index) or 1)
+  local inst_index_0 = math.max(0, (tonumber(s.selected_instrument_index) or 1) - 1)
   local lines_per_beat = (lpb * 4.0) / math.max(1, d)
+  local TICKS_PER_LINE = 256 -- delay column resolution 0..255
 
-  for b = 0, math.max(0, (n or 0) - 1) do
-    local t = b * lines_per_beat -- time in lines from start of bar (can be fractional)
-    local rem = t
+  -- Map absolute (0-based) line offset into (seq_idx, 1-based line_in_pattern)
+  local function map_abs_line(abs_line)
     local seq = start_seq_index
-
-    -- find target sequence and line within it
-    local found = false
+    local off = abs_line
     for i = 1, #created_lengths do
       local len = created_lengths[i]
-      if rem < len then
-        local line_index = math.floor(rem) + 1
-        local frac = rem - math.floor(rem)
-        local delay = math.floor((frac * 255) + 0.5)
-        local pat_index = s.sequencer.pattern_sequence[seq]
-        local p = s.patterns[pat_index]
-        if p then
-          local l = p:track(t_index):line(line_index)
-          if l and l.note_columns and #l.note_columns >= 1 then
-            local nc = l.note_columns[1]
-            nc.note_string = "C-4"
-            nc.instrument_value = math.max(0, inst_index - 1)
-            if nc.delay_value ~= nil then
-              nc.delay_value = math.max(0, math.min(255, delay))
-            end
-          end
-        end
-        found = true
-        break
+      if off < len then
+        return seq, (off + 1)
       else
-        rem = rem - len
+        off = off - len
         seq = seq + 1
       end
     end
-    if not found then
-      -- out of bounds; ignore silently
+    return nil, nil
+  end
+
+  for b = 0, math.max(0, (n or 0) - 1) do
+    -- Absolute position in lines (float)
+    local pos_f = b * lines_per_beat
+    local line_int = math.floor(pos_f)        -- 0-based
+    local frac = pos_f - line_int             -- 0..(almost 1)
+
+    -- Convert fraction to ticks (rounded); carry overflow to next line
+    local ticks = math.floor(frac * TICKS_PER_LINE + 0.5) -- 0..256
+    if ticks >= TICKS_PER_LINE then
+      ticks = 0
+      line_int = line_int + 1
+    end
+
+    -- Map to target sequence/line within created patterns
+    local seq, line = map_abs_line(line_int)
+    if not (seq and line) then
+      -- Edge case: overflow past last created line; clamp to last valid cell
+      seq = start_seq_index + #created_lengths - 1
+      line = created_lengths[#created_lengths]
+      ticks = math.max(0, math.min(255, ticks))
+    end
+
+    local pat_index = s.sequencer.pattern_sequence[seq]
+    local pat = pat_index and s.patterns[pat_index]
+    if pat then
+      -- If carry pushed us beyond this pattern, roll into next
+      while line > pat.number_of_lines do
+        line = line - pat.number_of_lines
+        seq = seq + 1
+        pat_index = s.sequencer.pattern_sequence[seq]
+        pat = pat_index and s.patterns[pat_index]
+        if not pat then break end
+      end
+      if pat then
+        local tr = pat:track(t_index)
+        if tr then
+          local l = tr:line(line)
+          if l and l.note_columns and #l.note_columns >= 1 then
+            local nc = l.note_columns[1]
+            nc.note_string = "C-4"
+            nc.instrument_value = inst_index_0
+            if nc.delay_value ~= nil then
+              nc.delay_value = math.max(0, math.min(255, ticks))
+            end
+          end
+        end
+      end
     end
   end
 end

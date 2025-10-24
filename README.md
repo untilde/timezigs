@@ -137,6 +137,9 @@ BeatDuration(lines) = (LPB * 4) / d
 LinesPerBar         = round(n * (4 / d) * LPB)
 ```
 
+Delay column resolution:
+- Renoise’s note delay column has 256 sub-line units per line (`00`–`FF`), independent of ticks-per-line (TPL). TimeZigs’ fill logic rounds to these 256 steps and carries overflow to the next line when needed.
+
 Constraints and validation:
 - A beat must be at least `1` line long. If `(LPB * 4) / d < 1`, the tool warns and aborts.
 - Higher denominators (e.g., `d = 24`, `32`) generally require higher `LPB` to avoid sub-line beats.
